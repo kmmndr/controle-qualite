@@ -24,11 +24,11 @@ RUN gem install --no-document bundler \
       pandoc-ruby
 
 RUN npm install -g \
-      eslint@7.29.0 \
-      prettier@2.3.2 \
+      eslint@8.8.0 \
+      prettier@2.5.1 \
       standard-prettier@1.0.1 \
       standard@16.0.4 \
-      stylelint@13.13.1 \
+      stylelint@14.3.0 \
       'https://github.com/Captive-Studio/captive-js-lint.git#1.0.0'
 
 COPY --chmod=+x controle-qualite.mk /usr/local/bin
