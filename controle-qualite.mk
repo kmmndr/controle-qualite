@@ -69,7 +69,8 @@ check-css: stylelint
 
 stylelint:
 	@echo "Checking scss code"
-	stylelint app/**/*.scss
+	cd ../app_linter
+	yarn stylelint  "../app/app/**/*.{css,scss}" !**/vendor/**/*
 
 ###
 ## JS
@@ -80,8 +81,5 @@ check-js: eslint prettier
 
 eslint:
 	@echo "Checking js syntax"
-	eslint app/**/*.js
-
-prettier:
-	@echo "Checking js syntax"
-	prettier --check app
+	cd ../app_linter
+	yarn eslint --cache --ext .cjs,.js,.jsx,json --ignore-path ../app/.eslintignore ../app/.
