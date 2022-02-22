@@ -10,7 +10,7 @@ RUN apk add --no-cache \
       ruby \
       ruby-sassc \
       nodejs \
-      npm
+      yarn
 
 RUN apk add --no-cache binutils pandoc \
  && strip /usr/bin/pandoc \
@@ -23,12 +23,10 @@ RUN gem install --no-document bundler \
       slim_lint:0.22.1 \
       pandoc-ruby
 
-RUN npm install -g \
-      eslint@8.8.0 \
-      prettier@2.5.1 \
-      standard-prettier@1.0.1 \
-      standard@16.0.4 \
-      stylelint@14.3.0 \
-      'https://github.com/Captive-Studio/captive-js-lint.git#1.0.0'
+RUN yarn global add @captive/eslint-config \
+                    @captive/stylelint-config \
+                    eslint \
+                    eslint-plugin-unicorn \
+                    stylelint
 
 COPY --chmod=+x controle-qualite.mk /usr/local/bin

@@ -60,6 +60,9 @@ self-check-node: ##- Check node tools versions
 	@echo "Checking for updates ..."
 	@npm outdated -g
 
+yarn-install:
+	yarn install
+
 ###
 ## CSS
 #
@@ -67,21 +70,17 @@ self-check-node: ##- Check node tools versions
 check-css: ##- Check css code quality
 check-css: stylelint
 
-stylelint:
+stylelint: yarn-install
 	@echo "Checking scss code"
-	stylelint app/**/*.scss
+	yarn stylelint "**/*.{css,scss}"
 
 ###
 ## JS
 #
 
 check-js: ##- Check js code quality
-check-js: eslint prettier
+check-js: eslint
 
-eslint:
+eslint: yarn-install
 	@echo "Checking js syntax"
-	eslint app/**/*.js
-
-prettier:
-	@echo "Checking js syntax"
-	prettier --check app
+	yarn eslint --ext .cjs,.js,.jsx,.json .
