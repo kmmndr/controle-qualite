@@ -27,6 +27,7 @@ RUN yarn global add @captive/eslint-config \
                     @captive/stylelint-config \
                     eslint \
                     eslint-plugin-unicorn \
-                    stylelint
+                    stylelint \
+                    prettier
 
 COPY --chmod=+x controle-qualite.mk /usr/local/bin
