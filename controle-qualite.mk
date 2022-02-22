@@ -55,10 +55,10 @@ self-check-node: ##- Check node tools versions
 	@echo "Checking node packages versions"
 	@echo
 	@echo "Installed versions"
-	@npm ls -g
+	@yarn global list
 	@echo
 	@echo "Checking for updates ..."
-	@npm outdated -g
+	@yarn outdated
 
 yarn-install:
 	yarn install
