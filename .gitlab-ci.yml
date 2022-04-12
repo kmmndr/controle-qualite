@@ -38,5 +38,6 @@ release:image:
   script:
     - make ci-push-release
     - make -e REF_ID=latest ci-push-release
-  rules:
-    - if: '$CI_COMMIT_TAG =~ /^([0-9]|[1-9][0-9]+)\.([0-9]|[1-9][0-9]+)\.([0-9]|[1-9][0-9]+)$/'
+  only:
+    - tags
+    - master
