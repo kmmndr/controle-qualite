@@ -17,7 +17,7 @@ RUN apk add --no-cache binutils pandoc \
  && apk del binutils
 
 RUN gem install --no-document bundler \
-      bundler-audit:0.9.0.1 \
+      bundler-audit:0.9.1 \
       brakeman:5.2.3 \
       rubocop:1.29.1 rubocop-performance rubocop-rails \
       slim_lint:0.22.1 \
