@@ -1,5 +1,5 @@
-FROM alpine:3.15
-RUN sed -i -e 's|^\(.*\)v3.15/main|\1edge/testing\n&|' /etc/apk/repositories
+FROM alpine:3.16
+RUN sed -i -e 's|^\(.*\)v[0-9.]*/main|@edge-testing \1edge/testing\n&|' /etc/apk/repositories
 
 WORKDIR /srv/app
 
@@ -12,9 +12,10 @@ RUN apk add --no-cache \
       nodejs \
       yarn
 
-RUN apk add --no-cache binutils pandoc \
+RUN apk add --update binutils pandoc@edge-testing \
  && strip /usr/bin/pandoc \
- && apk del binutils
+ && apk del binutils \
+ && rm /var/cache/apk/*
 
 RUN gem install --no-document bundler \
       bundler-audit:0.9.1 \
