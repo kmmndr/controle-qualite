@@ -36,4 +36,16 @@ pre-test:lint:rubocop:
   <<: *controle_qualite
   script:
     - controle-qualite.mk rubocop
+
+pre-test:audit:bundle-audit:
+  <<: *controle_qualite
+  script:
+    - controle-qualite.mk bundle-audit
+  allow_failure: true
+
+pre-test:audit:brakeman:
+  <<: *controle_qualite
+  script:
+    - controle-qualite.mk brakeman
+  allow_failure: true
 ```
