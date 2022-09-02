@@ -19,7 +19,7 @@ RUN apk add --update binutils pandoc@edge-testing \
 
 RUN gem install --no-document bundler \
       bundler-audit:0.9.1 \
-      brakeman:5.2.3 \
+      brakeman:5.3.1 \
       rubocop:1.33.0 rubocop-performance rubocop-rails \
       slim_lint:0.22.1 \
       pandoc-ruby
