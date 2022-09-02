@@ -1,5 +1,5 @@
 FROM alpine:3.16
-RUN sed -i -e 's|^\(.*\)v[0-9.]*/main|@edge-testing \1edge/testing\n&|' /etc/apk/repositories
+RUN sed -i -e 's|^\(.*\)v[0-9.]*/main|@edge-community \1edge/community\n&|' /etc/apk/repositories
 
 WORKDIR /srv/app
 
@@ -12,7 +12,7 @@ RUN apk add --no-cache \
       nodejs \
       yarn
 
-RUN apk add --update binutils pandoc@edge-testing \
+RUN apk add --update binutils pandoc@edge-community \
  && strip /usr/bin/pandoc \
  && apk del binutils \
  && rm /var/cache/apk/*
