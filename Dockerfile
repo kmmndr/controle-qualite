@@ -1,4 +1,4 @@
-FROM alpine:3.16
+FROM alpine:3.17
 RUN sed -i -e 's|^\(.*\)v[0-9.]*/main|@edge-community \1edge/community\n&|' /etc/apk/repositories
 
 WORKDIR /srv/app
