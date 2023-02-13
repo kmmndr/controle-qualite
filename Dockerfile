@@ -20,8 +20,8 @@ RUN apk add --update binutils pandoc@edge-community \
 RUN gem install --no-document bundler \
       bundler-audit:0.9.1 \
       brakeman:5.4.0 \
-      rubocop:1.43.0 rubocop-performance rubocop-rails rubocop-rspec \
-      slim_lint:0.22.1 \
+      rubocop:1.45.1 rubocop-performance rubocop-rails rubocop-rspec \
+      slim_lint:0.24.0 \
       pandoc-ruby
 
 RUN yarn global add @captive/eslint-config \
