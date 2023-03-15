@@ -28,19 +28,19 @@ self-check-ruby: ##- Check ruby tools versions
 check-ruby: ##- Check ruby code quality
 check-ruby: rubocop slim-lint bundle-audit brakeman
 
-rubocop:
+rubocop: ##- Ruby linter
 	@echo "Checking ruby code quality"
 	rubocop -f simple
 
-slim-lint:
+slim-lint: ##- Slim linter
 	@echo "Checking slim code quality"
 	slim-lint .
 
-bundle-audit:
+bundle-audit: ##- Bundled gems vulnerability scanner
 	@echo "Checking for vulnerabilities in bundled gems"
 	bundle-audit check --update
 
-brakeman:
+brakeman: ##- Ruby vulnerability scanner
 	@echo "Checking for vulnerabilities ruby code"
 	brakeman --run-all-checks --no-progress --no-pager --quiet --ignore-config .brakeman.ignore
 
@@ -68,7 +68,7 @@ yarn-install:
 check-css: ##- Check css code quality
 check-css: stylelint
 
-stylelint: yarn-install
+stylelint: yarn-install ##- CSS linter
 	@echo "Checking scss code"
 	yarn stylelint "**/*.{css,scss}"
 
@@ -79,6 +79,6 @@ stylelint: yarn-install
 check-js: ##- Check js code quality
 check-js: eslint
 
-eslint: yarn-install
+eslint: yarn-install ##- JS syntax checker
 	@echo "Checking js syntax"
 	yarn eslint --ext .cjs,.js,.jsx,.json .
