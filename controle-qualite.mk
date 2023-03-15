@@ -5,10 +5,8 @@ help: ##- Print available commands
 	@echo "Contrôle qualité:"
 	@sed -e '/#\{2\}-/!d; s/\\$$//; s/:[^#\t]*/:/; s/#\{2\}-*//; s/^/  /' $(MAKEFILE_LIST)
 
-c: check-all ##- Alias for check-all
 check-all: check-ruby check-css check-js ##- check ruby, css, js
 
-s: self-check ##- Alias for self-check
 self-check: self-check-ruby self-check-node ##- Check tools versions
 
 GEM_LIST=rubocop|slim_lint|bundler-audit|brakeman
