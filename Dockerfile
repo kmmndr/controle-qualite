@@ -1,6 +1,11 @@
 FROM alpine:3.18.4
 RUN sed -i -e 's|^\(.*\)v[0-9.]*/main|@edge-community \1edge/community\n&|' /etc/apk/repositories
 
+ARG BUNDLER_AUDIT_VERSION=0.9.1
+ARG BRAKEMAN_VERSION=6.0.1
+ARG RUBOCOP_VERSION=1.57.2
+ARG SLIM_LINT_VERSION=0.24.0
+
 WORKDIR /srv/app
 
 RUN apk add --no-cache \
@@ -18,10 +23,10 @@ RUN apk add --update binutils pandoc@edge-community \
  && rm /var/cache/apk/*
 
 RUN gem install --no-document bundler \
-      bundler-audit:0.9.1 \
-      brakeman:5.4.1 \
-      rubocop:1.48.1 rubocop-performance rubocop-rails rubocop-rspec \
-      slim_lint:0.24.0 \
+      bundler-audit:${BUNDLER_AUDIT_VERSION} \
+      brakeman:${BRAKEMAN_VERSION} \
+      rubocop:${RUBOCOP_VERSION} rubocop-performance rubocop-rails rubocop-rspec \
+      slim_lint:${SLIM_LINT_VERSION} \
       pandoc-ruby
 
 RUN yarn global add @captive/eslint-config \
