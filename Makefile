@@ -1,4 +1,4 @@
-REGISTRY_PROJECT_URL ?= registry.git.captive.fr/captive/systeme/docker/controle-qualite
+REGISTRY_PROJECT_URL ?= ghcr.io/kmmndr/controle-qualite
 # BUILD_ID = commit_sha
 BUILD_ID ?=$(shell test -d .git && git rev-parse HEAD | cut -c -8)
 # REF_ID = branch_name

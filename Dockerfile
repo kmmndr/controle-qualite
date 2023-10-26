@@ -1,6 +1,8 @@
 FROM alpine:3.18.4
 RUN sed -i -e 's|^\(.*\)v[0-9.]*/main|@edge-community \1edge/community\n&|' /etc/apk/repositories
 
+LABEL "org.opencontainers.image.source"="https://github.com/kmmndr/controle-qualite"
+
 ARG BUNDLER_AUDIT_VERSION=0.9.1
 ARG BRAKEMAN_VERSION=6.0.1
 ARG RUBOCOP_VERSION=1.57.2
