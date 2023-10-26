@@ -71,3 +71,7 @@ pre-test:audit:brakeman:
     - controle-qualite.mk brakeman
   allow_failure: true
 ```
+
+## License
+
+This tool is available as open source under the terms of the [MIT License](LICENSE).
