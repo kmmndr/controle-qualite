@@ -72,6 +72,10 @@ pre-test:audit:brakeman:
   allow_failure: true
 ```
 
+## Contributing
+
+Bug reports and pull requests are welcome on GitHub at https://github.com/kmmndr/controle-qualite.
+
 ## License
 
 This tool is available as open source under the terms of the [MIT License](LICENSE).
