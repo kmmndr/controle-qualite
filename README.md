@@ -17,11 +17,33 @@ As well as CSS/JS node tools:
 
 ## Usage
 
+### Console
+
+Grab latest image
+
+```sh
+docker pull ghcr.io/kmmndr/controle-qualite:latest
+```
+
+Then run the following command in your project directory
+
+```sh
+docker run --rm -it -v $(pwd):/srv/app:ro ghcr.io/kmmndr/controle-qualite:latest controle-qualite.mk check-ruby
+```
+
+Or simply create a `controle-qualite` shell script
+
+```sh
+#!/bin/sh
+
+docker run --rm -it -v $(pwd):/srv/app:ro ghcr.io/kmmndr/controle-qualite:latest controle-qualite.mk $@
+```
+
 ### Gitlab CI
 
 Adding `controle-qualite` to gitlab-ci.yml is staitforward:
 
-```
+```yaml
 .controle_qualite: &controle_qualite
   image: registry/controle-qualite:latest
   stage: pre-test
