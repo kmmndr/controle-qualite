@@ -28,7 +28,7 @@ ARG SLIM_LINT_VERSION=0.29.0
 RUN gem install --no-document bundler \
       bundler-audit:${BUNDLER_AUDIT_VERSION} \
       brakeman:${BRAKEMAN_VERSION} \
-      rubocop:${RUBOCOP_VERSION} rubocop-performance rubocop-rails rubocop-rspec \
+      rubocop:${RUBOCOP_VERSION} rubocop-performance rubocop-rails rubocop-rspec rubocop-capybara rubocop-factory_bot \
       slim_lint:${SLIM_LINT_VERSION} \
       pandoc-ruby
 
