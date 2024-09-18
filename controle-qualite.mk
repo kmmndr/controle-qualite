@@ -5,9 +5,9 @@ help: ##- Print available commands
 	@echo "Contrôle qualité:"
 	@sed -e '/#\{2\}-/!d; s/\\$$//; s/:[^#\t]*/:/; s/#\{2\}-*//; s/^/  /' $(MAKEFILE_LIST)
 
-check-all: check-ruby check-css check-js ##- check ruby, css, js
+check-all: check-ruby ##- check ruby, css, js
 
-self-check: self-check-ruby self-check-node ##- Check tools versions
+self-check: self-check-ruby ##- Check tools versions
 
 GEM_LIST=rubocop|slim_lint|bundler-audit|brakeman
 
@@ -43,42 +43,3 @@ bundle-audit: ##- Bundled gems vulnerability scanner
 brakeman: ##- Ruby vulnerability scanner
 	@echo "Checking for vulnerabilities ruby code"
 	brakeman --run-all-checks --no-progress --no-pager --quiet --ignore-config .brakeman.ignore
-
-###
-## Node
-#
-
-self-check-node: ##- Check node tools versions
-	@echo
-	@echo "Checking node packages versions"
-	@echo
-	@echo "Installed versions"
-	@yarn global list
-	@echo
-	@echo "Checking for updates ..."
-	@yarn outdated
-
-yarn-install:
-	yarn install
-
-###
-## CSS
-#
-
-check-css: ##- Check css code quality
-check-css: stylelint
-
-stylelint: yarn-install ##- CSS linter
-	@echo "Checking scss code"
-	yarn stylelint "**/*.{css,scss}"
-
-###
-## JS
-#
-
-check-js: ##- Check js code quality
-check-js: eslint
-
-eslint: yarn-install ##- JS syntax checker
-	@echo "Checking js syntax"
-	yarn eslint --ext .cjs,.js,.jsx,.json .

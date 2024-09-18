@@ -9,12 +9,6 @@ It currently includes the following ruby tools:
 - [rubocop](https://github.com/rubocop/rubocop)
 - [slim-lint](https://github.com/sds/slim-lint)
 
-As well as CSS/JS node tools:
-- [eslint](https://eslint.org)
-- [prettier](https://prettier.io)
-- [standard](https://standardjs.com/)
-- [stylelint](https://stylelint.io/)
-
 ## Usage
 
 ### Console

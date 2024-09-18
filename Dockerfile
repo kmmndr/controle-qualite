@@ -32,11 +32,4 @@ RUN gem install --no-document bundler \
       slim_lint:${SLIM_LINT_VERSION} \
       pandoc-ruby
 
-RUN yarn global add @captive/eslint-config \
-                    @captive/stylelint-config \
-                    eslint \
-                    eslint-plugin-unicorn \
-                    stylelint \
-                    prettier
-
 COPY --chmod=+x controle-qualite.mk /usr/local/bin
