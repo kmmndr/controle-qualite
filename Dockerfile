@@ -1,4 +1,5 @@
-FROM alpine:3.20.2
+FROM alpine:3.20.2 AS base
+
 RUN sed -i -e 's|^\(.*\)v[0-9.]*/main|@edge-community \1edge/community\n&|' /etc/apk/repositories
 
 LABEL "org.opencontainers.image.source"="https://github.com/kmmndr/controle-qualite"
@@ -7,18 +8,23 @@ WORKDIR /srv/app
 
 RUN apk add --no-cache \
       coreutils \
-      git \
       make \
+      git \
       ruby \
-      ruby-dev build-base \
-      ruby-sassc \
-      nodejs \
-      yarn
+      ruby-sassc
 
 RUN apk add --update binutils pandoc@edge-community \
  && strip /usr/bin/pandoc \
  && apk del binutils \
  && rm /var/cache/apk/*
+
+COPY --chmod=+x controle-qualite.mk /usr/local/bin
+
+FROM base AS build
+
+RUN apk add --no-cache \
+      coreutils \
+      ruby-dev build-base
 
 ARG BUNDLER_AUDIT_VERSION=0.9.2
 ARG BRAKEMAN_VERSION=6.2.1
@@ -34,4 +40,17 @@ RUN gem install --no-document bundler \
       i18n-tasks:${I18N_TASKS_VERSION} \
       pandoc-ruby
 
-COPY --chmod=+x controle-qualite.mk /usr/local/bin
+FROM base
+
+COPY --from=build /usr/lib/ruby /usr/lib/ruby
+
+COPY --from=build /usr/bin/brakeman      /usr/bin/
+COPY --from=build /usr/bin/bundle        /usr/bin/
+COPY --from=build /usr/bin/bundle-audit  /usr/bin/
+COPY --from=build /usr/bin/bundler       /usr/bin/
+COPY --from=build /usr/bin/bundler-audit /usr/bin/
+COPY --from=build /usr/bin/i18n-tasks    /usr/bin/
+COPY --from=build /usr/bin/rake          /usr/bin/
+COPY --from=build /usr/bin/rubocop       /usr/bin/
+COPY --from=build /usr/bin/slim-lint     /usr/bin/
+COPY --from=build /usr/bin/slimrb        /usr/bin/
