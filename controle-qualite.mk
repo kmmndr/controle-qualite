@@ -9,7 +9,7 @@ check-all: check-ruby ##- check ruby, css, js
 
 self-check: self-check-ruby ##- Check tools versions
 
-GEM_LIST=rubocop|slim_lint|bundler-audit|brakeman
+GEM_LIST=rubocop|slim_lint|bundler-audit|brakeman|i18n-tasks
 
 self-check-ruby: ##- Check ruby tools versions
 	@echo
@@ -26,7 +26,7 @@ self-check-ruby: ##- Check ruby tools versions
 #
 
 check-ruby: ##- Check ruby code quality
-check-ruby: rubocop slim-lint bundle-audit brakeman
+check-ruby: rubocop slim-lint bundle-audit brakeman i18n-tasks-check-normalized
 
 rubocop: ##- Ruby linter
 	@echo "Checking ruby code quality"
@@ -43,3 +43,7 @@ bundle-audit: ##- Bundled gems vulnerability scanner
 brakeman: ##- Ruby vulnerability scanner
 	@echo "Checking for vulnerabilities ruby code"
 	brakeman --run-all-checks --no-progress --no-pager --quiet --ignore-config .brakeman.ignore
+
+i18n-tasks-check-normalized: ##- Ruby translation tool
+	@echo "Checking for translation normalization"
+	i18n-tasks check-normalized
