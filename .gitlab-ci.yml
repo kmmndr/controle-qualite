@@ -1,4 +1,4 @@
-image: registry.git.captive.fr/captive/systeme/docker-maker:20.10.11-0
+image: registry.gitlab.com/tftp/open/docker-maker:latest
 
 stages:
   - build
@@ -6,20 +6,14 @@ stages:
 
 .docker_dind: &docker_dind
   services:
-    - name: docker:dind
-      command: ["--registry-mirror", "https://docker.mirror.captive.fr"]
-  tags:
-    - docker-dind
+    - name: docker:27.5.0-alpine3.21
   before_script:
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CONTAINER_REGISTRY
     - export TEST_IMAGE=$REGISTRY_PROJECT_URL/$BUILD_SUBPATH:${BUILD_ID}-test
-  # Common jobs variables
-  variables:
-    DOCKER_DRIVER: overlay2
 
 # Common jobs variables
 variables:
-  CONTAINER_REGISTRY: registry.git.captive.fr
+  CONTAINER_REGISTRY: registry.gitlab.com
   # Required variables for docker.mk
   REGISTRY_PROJECT_URL: $CONTAINER_REGISTRY/$CI_PROJECT_PATH
   BUILD_SUBPATH: dev
